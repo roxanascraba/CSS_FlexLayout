@@ -1,0 +1,490 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* content(by default) => total width of the box = 350px + paddingLeft + paddingRight */
+                            /* border-box          => total width of the box(content+padding+border) = 350px (width is including padding) */
+}
+
+button {
+    border: initial;
+    background-color: initial;
+    color: inherit;
+    font: inherit;
+    outline: none;  /*  No visual indicater of the focused element */
+}
+
+/* KEYFRAMES */
+@keyframes fade-in-from-top {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@keyframes fade-in-from-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fade-in-from-right {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+@keyframes make-smaller {
+    0% {
+        height: 100%;
+        width: 100%;
+    }
+    100% {
+        height: 75%;
+        width: 75%;
+    }
+}
+
+/* BASE STYLE */
+.app {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    color: white;
+    height: 100vh;
+    width: 100vw;
+}
+
+.appContainer {
+    height: calc(100vh - 55px); /* 100% from viewport height - the height of the header */
+    display: flex;
+}
+
+/* STYLES */
+.header {
+    background-image: linear-gradient(to right, #18A0BE , #622DB9);
+    height: 55px;
+    display: flex;
+}
+
+.Logo {
+    align-self: center;
+    margin-left: 20px;
+    margin-right: 30px;
+    animation: fade-in-from-top 0.5s;
+}
+
+.ddToggle {
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0 13px;
+    cursor: pointer;
+    transition: all 0.4s;
+    animation: fade-in-from-top 0.5s;
+}
+
+.ddToggle:hover ,
+.ddToggle:focus {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.07);
+}
+
+.ddToggle:nth-of-type(4){
+    margin-left: auto;
+}
+
+.ddToggle:last-child {
+    display: flex;
+    align-items: center;
+}
+.ddToggleIcon {
+}
+.ddToggleImg {
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 7px;
+}
+.ddToggleText {
+}
+
+/* ----------------- */
+
+.sidebar {
+    background-color: #10171A;
+    /* flex: 1; */ /* not used; on small devices, I want to see a fixed width */
+    width: 75px;
+    display: flex;
+    flex-direction: column;
+}
+.menu {
+}
+.menuButton {
+    padding: 19px 0;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    transition: all 0.4s; /* All the changes should happend in 0.4 sec; for a smoother hover */
+    animation: fade-in-from-left 0.5s;
+}
+.menuButton:hover,
+.menuButton:focus {
+    background-color: #2B363B;
+    color: #ffffff;
+    cursor: pointer;
+}
+.menuButtonActive {
+    background-color: #2B363B;
+    color: #ffffff; 
+}
+.menuButtonActive::before { /* a block before all the Button child elements (image and text) */
+    content: '';
+    width: 3px;
+    height: 100%;
+    background-color: #375886;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.menuIcon {
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+.menuText {
+    font-weight: 500;
+    font-size: 12px;
+}
+.footer {
+    margin-top: auto; /* to be moved at the bottom of sidebar - flex*/
+    margin-bottom: 60px;
+    transform: rotate(-90deg);
+}
+.copyright {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+    white-space: nowrap; /* text on one line only */
+}
+
+/* ----------------- */
+
+.panel {
+    background-color: #2B363C;
+    /* flex: 3; */
+    width: 350px;
+    padding: 15px 30px; /* padding is included in 350px ; used box-sizing: border-box;*/
+}
+.panelTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    border-bottom: 1px solid #4B5155;
+    padding-bottom: 12px;
+}
+.firstHeading {
+    font-size: 18px;
+    font-weight: 400;
+}
+.panelCollapeIcon {
+    color: #6B7276;
+    cursor: pointer;
+    margin-left: auto;
+}
+.panelImages {
+    padding: 25px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.panelImg,
+.panelBtn {
+    width: 140px;
+    height: 140px;
+    border-radius: 7px;
+    transition: all 0.2s;
+}
+.panelImg {
+    object-fit: cover;
+    cursor: pointer;
+    animation: fade-in 1s;
+}
+.panelImg:nth-child(2) {
+    animation: fade-in 1s 0.1s backwards;
+}
+.panelImg:nth-child(3) {
+    animation: fade-in 1s 0.2s backwards;
+}
+.panelImg:nth-child(4) {
+    animation: fade-in 1s 0.3s backwards;
+}
+.panelImg:nth-child(5) {
+    animation: fade-in 1s 0.4s backwards;
+}
+.panelImg:hover {
+    transform: scale(1.05); /* make the image 5% bigger */
+}
+.panelBtn {
+    background-color: #333E44;
+    cursor: pointer;
+    animation: fade-in 1s 0.5s backwards;
+}
+.panelBtn:hover,
+.panelBtn:focus {
+    background-color: #404C52;
+}
+.panelUploadIcon {  /* in fa(font awesome), an image is treated as a text */
+    font-size: 25px;
+    color: #21292D;
+}
+
+/* ----------------- */
+
+.main {
+    background-color: #EDF1F3;
+    flex: 1;  /* take all the available space */
+}
+.infoBar {
+    height: 50px;
+    background-color: #fff;
+    border-bottom: 1px solid #D6DDE1;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.breadcrumbs {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 12px;
+}
+.breadcrumbsLink {
+    color: #a6adb1;
+    text-decoration: none;
+}
+.breadcrumbsIcon {
+    color: #a6adb1;
+    margin: 0 13px;
+}
+.breadcrumbsName {
+    color: #2E3335;
+    font-weight: 500;
+}
+.button {
+    background-color: #375BB6;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 20px;
+    cursor: pointer;
+    border-radius: 500px;
+    transition: all 0.4s;
+}
+.button:hover,
+.button:focus {
+    background-color: #26438D;
+}
+
+.artboard {
+    height: calc(100vh - 50px - 55px); /* set the height of the artboard in order to center the content verticaly ; 100% viewport height - info bar height - header height*/
+    display: flex;
+    justify-content: center; /* align horizontaly */
+    align-items: center;     /* align verticaly */
+    margin: -25px;
+    column-gap: 20px; /* gap between canvas and tools section (which includes the buttons from the right)*/
+}
+.canvas {
+    height: 57.5vh;
+    width: 48.6vw; /* 48.6% of the viewport width */
+    position: relative;
+    border: 1px solid #fff;
+    border-radius: 3px;
+}
+.canvasBgImg {
+    height: 100%; /* relative to its parent element */
+    width: 100%;
+    object-fit: cover; /* solve the issue of loosing aspect ratio for the image */
+    opacity: 0.15;
+}
+.canvasFgImg {
+    height: 75%;
+    width: 75%;
+    object-fit: cover;
+    border-radius: 3px;
+    position: absolute; /* agains the canvas div which has position: relativ */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* negative values -> relative to its own size >> center it in a different element */
+    border: 1px solid #fff;
+    cursor: grab;
+    animation: make-smaller 1s 0.2s backwards; /* 1s = how long it will take the animation; 0.2s is for delay(don't start imediately) */
+}
+.canvasCircle {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute; /* to place them on top of everything; and they have to be relative to the canvas (which has position:relative) */
+    animation: fade-in 1s 1s backwards;
+}
+.canvasCircle:nth-of-type(1){
+    top:11.5%;
+    left: 11.4%;
+    cursor: nw-resize;
+}
+.canvasCircle:nth-of-type(2){
+    top: 11.5%;
+    right: 11.4%;
+    cursor: sw-resize;
+}
+.canvasCircle:nth-of-type(3){
+    bottom: 11.5%;
+    left: 11.4%;
+    cursor: sw-resize;
+}
+.canvasCircle:nth-of-type(4){
+    bottom: 11.5%;
+    right: 11.4%;
+    cursor: nw-resize;
+}
+.tools {
+    height: 57.5vh; /* the same height as canvas div*/
+    display: flex; /* because I want to move down the last button (trash icon) */
+    flex-direction: column; /* to place buttons one under another, verticaly */
+    row-gap: 5px;
+    animation: fade-in-from-right 0.5s ;
+}
+.tool {
+    background-color: #E1E6E9;
+    height: 44px;
+    width: 44px;
+    border-radius: 8px;
+    color: #404446;
+    cursor: pointer;
+    /* display: block;*/ /* buttons are not blocks elements by default, but inline elements ; add block in order to make them sit (verticaly) one under another or use display:flex and flex-direction:column for container and margin-top:auto for its child */
+    transition: all 0.4s;
+}
+.tool:last-child {
+    margin-top: auto; /* to place the last button (trash icon) at the bottom */
+}
+
+.toolActive,
+.tool:hover,
+.tool.focus {
+    background-color: #2B363B;
+    color: #fff;
+}
+.toolIcon {
+
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 1200px) {
+    .panel {
+        display: none;
+    }
+    .canvas {
+        width: 67vw; /* a bit wider */
+    }
+}
+@media (max-width: 1000px) {
+    .appContainer {
+        height: initial;
+        min-height: 100vh;
+    }
+    .sidebar {
+        display: none;
+    }
+    .infoBar,
+    .artboard {
+        padding: 0 20px;
+    }
+    .artboard {
+        margin-top: 0;
+        margin-left: 10px;
+        height: initial; /* to remove dependency of viewport calculation */
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .canvas {
+        width: 100%;
+        height: 500px;
+    }
+    .tools {
+        height: 500px;
+    }
+}
+@media (max-width: 580px) {
+    .ddToggle:nth-of-type(1),
+    .ddToggle:nth-of-type(2),
+    .ddToggle:nth-of-type(3) {
+        display: none;
+    }
+    .artboard {
+        flex-direction: column;
+    }
+    .canvas {
+        order: 2;
+        height: 450px;
+    }
+    .canvasCircle:nth-of-type(1) {
+        top: 11.5%;
+        left:9.8%
+    }
+    .canvasCircle:nth-of-type(2) {
+        top: 11.5%;
+        right: 9.8%
+    }
+    .canvasCircle:nth-of-type(3) {
+        bottom: 11.5%;
+        right: 9.8%
+    }
+    .canvasCircle:nth-of-type(4) {
+        bottom: 11.5%;
+        left: 9.8%
+    }
+    .tools {
+        flex-direction: row;
+        column-gap: 5px;
+        order: 1;
+        height: initial;
+        margin-bottom: 15px;
+        align-self: start; /* or flex-start*/
+    }
+    .tool:last-child(4) {
+        margin: 0;
+    }
+}
+@media (max-width:440px) {
+    .header {
+        justify-content: space-between; /* put as much space as possible between 2 elements (logo and button with image) */
+    }
+    .ddToggle:nth-of-type(4),
+    .ddToggle:nth-of-type(5),
+    .breadcrumbsLink, 
+    .breadcrumbsIcon {
+        display: none;
+    }
+    .canvas {
+        height: 400px;
+    }
+}
